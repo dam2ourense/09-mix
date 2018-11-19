@@ -43,4 +43,10 @@ export class IntroduccionPage {
     console.log('ionViewDidLoad IntroduccionPage');
   }
 
+  // *.25 crear evento de click
+  saltar_tutorial(){
+
+
+  }
+
 }
