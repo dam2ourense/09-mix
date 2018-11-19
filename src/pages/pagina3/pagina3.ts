@@ -8,7 +8,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+ // *.12 dar un nombre a la página
+@IonicPage({
+  name: "mi-pagina3"
+})
 @Component({
   selector: 'page-pagina3',
   templateUrl: 'pagina3.html',

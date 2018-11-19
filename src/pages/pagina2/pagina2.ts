@@ -18,9 +18,7 @@ export class Pagina2Page {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Pagina2Page');
-  }
+
 
   // *.10 crear métod que atiende al evento
   ir_pagina3(){
@@ -32,4 +30,37 @@ export class Pagina2Page {
   
 
   }
+
+  ionViewDidLoad(){
+    console.log("ionViewDidLoad");
+  }
+
+  ionViewWillEnter(){
+    console.log("ionViewWillEnter");
+  }
+
+  ionViewDidEnter(){
+    console.log("ionViewDidEnter");
+  }
+
+  ionViewWillLeave(){
+    console.log("ionViewWillLeave");
+  }
+
+  ionViewDidLeave(){
+    console.log("ionViewDidLeave");
+  }
+
+  ionViewWillUnload(){
+    console.log("ionViewWillUnload");
+  }
+
+  ionViewCanEnter(){
+    console.log("ionViewCanEnter");
+  }
+
+  ionViewCanLeave(){
+    console.log("ionViewCanLeave");
+  }
+
 }
