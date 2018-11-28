@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the Pagina2Page page.
@@ -15,7 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Pagina2Page {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  // *.42 import e inject AlertController
+  // *.44 import e inject LoadingController
+  constructor(public navCtrl: NavController, 
+            public navParams: NavParams,
+            private alertCtrl: AlertController,
+            private loadingCtrl: LoadingController) {
   }
 
 
@@ -56,7 +61,7 @@ export class Pagina2Page {
     console.log("ionViewWillUnload");
   }
 
-  ionViewCanEnter(){
+  ionViewCanEnter_antiguo(){
     console.log("ionViewCanEnter");
 
     // *.16 entrar de forma aleatoria
@@ -69,7 +74,34 @@ export class Pagina2Page {
     }
   }
 
-  ionViewCanLeave(){
+  // *.41 renombrar el ionViewCanEnter anterior a  ionViewCanEnter_antiguo()
+
+  ionViewCanEnter(){
+    console.log("ionViewCanEnter");
+
+    let promesa = new Promise ( (resolve, reject)=>{
+      // *.43 copiar el esquema de la DOCU https://ionicframework.com/docs/components/#alert-confirm
+      let confirmar = this.alertCtrl.create({
+        title: 'Seguro?',
+        message: 'Quieres entrar?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            handler: () => { resolve (false) }
+          },
+          {
+            text: 'Aceptar',
+            handler: () => { resolve (true) }
+          }
+        ]
+      });
+      confirmar.present();
+    }
+    );
+    return promesa;    
+  }
+
+  ionViewCanLeave_antiguo(){
     console.log("ionViewCanLeave");
     // *.17 dejamos salir después de 2 segundos
     let promesa = new Promise((resolv,reject) =>{
@@ -82,4 +114,21 @@ export class Pagina2Page {
 
   }
 
+  // *.44 renombrar el ionViewCanLeave por ionViewCanLeave_antiguo y trabajamos en este
+  ionViewCanLeave(){
+    console.log("ionViewCanLeave");
+
+    let loading = this.loadingCtrl.create({
+      content: "Espere por favor..."
+    })
+    loading.present();
+
+    let promesa = new Promise((resolv,reject) =>{
+      setTimeout(() => {
+        resolv (true);
+        loading.dismiss();        
+      }, 5000);
+    } );
+    return promesa;
+  }
 }
