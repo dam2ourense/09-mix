@@ -1,6 +1,7 @@
 import { AjustesProvider } from './../../providers/ajustes/ajustes';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from './../home/home';
 
 /**
  * Generated class for the IntroduccionPage page.
@@ -55,6 +56,7 @@ export class IntroduccionPage {
     this.ajusteProvider.listaAjustes.mostrar_tutorial = false;
     this.ajusteProvider.guardar_storage();
 
+    this.navCtrl.setRoot(HomePage);  
   }
 
 }

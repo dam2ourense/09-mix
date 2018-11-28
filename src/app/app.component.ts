@@ -18,7 +18,7 @@ export class MyApp {
   rootPage: any;
 
 
-  constructor(platform: Platform, statusBar: StatusBar, 
+  constructor(private platform: Platform, statusBar: StatusBar, 
               splashScreen: SplashScreen,
               private ajustesProvider:AjustesProvider) {
     platform.ready().then(() => {
@@ -47,6 +47,14 @@ export class MyApp {
       
       statusBar.styleDefault();
       splashScreen.hide();
+
+      // *.40 operaciones de pausa y resume
+      this.platform.pause.subscribe(()=>{
+        console.log ("la app se va a pausar")
+      });
+      this.platform.resume.subscribe(()=>{
+        console.log ("la app se va a reanudar")
+      });
     });
   }
 }
